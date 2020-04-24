@@ -16,15 +16,9 @@ CONFIG_DB = {
 }
 DB_NAME = 'morannon'
 
+#
 # connect to db
-try:
-    my_db = mariadb.connect(**CONFIG_DB, database=DB_NAME)
-except mariadb.Error as err:
-    print(err, file=sys.stderr)
-    sys.exit(1)
-
-my_cursor = my_db.cursor()
-
+#
 fc = FritzConnection(address=HOST, password=PW)
 logDict = fc.call_action('DeviceInfo1', 'GetInfo')
 log_l = logDict['NewDeviceLog']
